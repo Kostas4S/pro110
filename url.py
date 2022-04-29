@@ -6,7 +6,7 @@ import pandas as pd
 import csv
 
 df = pd.read_csv("data.csv")
-data = df["temp"].tolist()
+data = df["reading_time"].tolist()
 
 def random_set_of_mean(counter):
     dataset = []
@@ -21,7 +21,7 @@ def random_set_of_mean(counter):
 def show_fig(mean_list):
     df = mean_list
     mean = statistics.mean(df)
-    fig = ff.create_distplot([df], ["temp"], show_hist=False)
+    fig = ff.create_distplot([df], ["reading_time"], show_hist=False)
     fig.add_trace(go.Scatter(x=[mean, mean], y=[0, 1], mode="lines", name="MEAN"))
     fig.show()
 
@@ -29,13 +29,13 @@ def show_fig(mean_list):
 
 def setup():
     mean_list = []
-    for i in range(0,1000):
-        set_of_means= random_set_of_mean(100)
+    for i in range(0,100):
+        set_of_means= random_set_of_mean(10)
         mean_list.append(set_of_means)
     show_fig(mean_list)
     
     mean = statistics.mean(mean_list)
-    print("Mean of sampling distribution :-",mean )
+    print("Sampling Mean :-",mean )
 
 setup()
 
